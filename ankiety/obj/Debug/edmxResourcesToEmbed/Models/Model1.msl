@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Z707_PZModelStoreContainer" CdmEntityContainer="Z707_PZEntities2">
+    <EntitySetMapping Name="Adres">
+      <EntityTypeMapping TypeName="Z707_PZModel.Adres">
+        <MappingFragment StoreEntitySet="Adres">
+          <ScalarProperty Name="Adres_ID" ColumnName="Adres_ID" />
+          <ScalarProperty Name="AdresTyp_ID" ColumnName="AdresTyp_ID" />
+          <ScalarProperty Name="AdresKraj_ID" ColumnName="AdresKraj_ID" />
+          <ScalarProperty Name="AdresMiasto" ColumnName="AdresMiasto" />
+          <ScalarProperty Name="AdresKod" ColumnName="AdresKod" />
+          <ScalarProperty Name="AdresUlicaTyp" ColumnName="AdresUlicaTyp" />
+          <ScalarProperty Name="AdresUlica" ColumnName="AdresUlica" />
+          <ScalarProperty Name="AdresUlicaNR" ColumnName="AdresUlicaNR" />
+          <ScalarProperty Name="AdresWojewodztwo" ColumnName="AdresWojewodztwo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdresKraj">
+      <EntityTypeMapping TypeName="Z707_PZModel.AdresKraj">
+        <MappingFragment StoreEntitySet="AdresKraj">
+          <ScalarProperty Name="AdresKraj_ID" ColumnName="AdresKraj_ID" />
+          <ScalarProperty Name="AdresKraj1" ColumnName="AdresKraj" />
+          <ScalarProperty Name="AdresKraj_Info" ColumnName="AdresKraj_Info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdresTyp">
+      <EntityTypeMapping TypeName="Z707_PZModel.AdresTyp">
+        <MappingFragment StoreEntitySet="AdresTyp">
+          <ScalarProperty Name="AdresTyp_ID" ColumnName="AdresTyp_ID" />
+          <ScalarProperty Name="AdresTyp1" ColumnName="AdresTyp" />
+          <ScalarProperty Name="AdresTyp_Info" ColumnName="AdresTyp_Info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnkietaWzor">
+      <EntityTypeMapping TypeName="Z707_PZModel.AnkietaWzor">
+        <MappingFragment StoreEntitySet="AnkietaWzor">
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="NazwaAnkiety" ColumnName="NazwaAnkiety" />
+          <ScalarProperty Name="Wersja" ColumnName="Wersja" />
+          <ScalarProperty Name="Aktywna" ColumnName="Aktywna" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnkietaWzorOdpowiedz">
+      <EntityTypeMapping TypeName="Z707_PZModel.AnkietaWzorOdpowiedz">
+        <MappingFragment StoreEntitySet="AnkietaWzorOdpowiedz">
+          <ScalarProperty Name="AnkietaWzorOdpowiedz_ID" ColumnName="AnkietaWzorOdpowiedz_ID" />
+          <ScalarProperty Name="AnkietaWzorPytanie_ID" ColumnName="AnkietaWzorPytanie_ID" />
+          <ScalarProperty Name="Odpowiedz_LP" ColumnName="Odpowiedz_LP" />
+          <ScalarProperty Name="Odpowiedz" ColumnName="Odpowiedz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnkietaWzorPytanie">
+      <EntityTypeMapping TypeName="Z707_PZModel.AnkietaWzorPytanie">
+        <MappingFragment StoreEntitySet="AnkietaWzorPytanie">
+          <ScalarProperty Name="AnkietaWzorPytanie_ID" ColumnName="AnkietaWzorPytanie_ID" />
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="Pytanie_LP" ColumnName="Pytanie_LP" />
+          <ScalarProperty Name="Pytanie" ColumnName="Pytanie" />
+          <ScalarProperty Name="OdpowiedzTyp" ColumnName="OdpowiedzTyp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kierunek">
+      <EntityTypeMapping TypeName="Z707_PZModel.Kierunek">
+        <MappingFragment StoreEntitySet="Kierunek">
+          <ScalarProperty Name="Kierunek_ID" ColumnName="Kierunek_ID" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="UczelniaNazwa" ColumnName="UczelniaNazwa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pracodawca">
+      <EntityTypeMapping TypeName="Z707_PZModel.Pracodawca">
+        <MappingFragment StoreEntitySet="Pracodawca">
+          <ScalarProperty Name="Pracodawca_ID" ColumnName="Pracodawca_ID" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="NIP" ColumnName="NIP" />
+          <ScalarProperty Name="REGON" ColumnName="REGON" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staz">
+      <EntityTypeMapping TypeName="Z707_PZModel.Staz">
+        <MappingFragment StoreEntitySet="Staz">
+          <ScalarProperty Name="Staz_ID" ColumnName="Staz_ID" />
+          <ScalarProperty Name="Pracodawca_ID" ColumnName="Pracodawca_ID" />
+          <ScalarProperty Name="StazPraktykaTyp_ID" ColumnName="StazPraktykaTyp_ID" />
+          <ScalarProperty Name="StazNazwa" ColumnName="StazNazwa" />
+          <ScalarProperty Name="StazProgram" ColumnName="StazProgram" />
+          <ScalarProperty Name="Data_OD" ColumnName="Data_OD" />
+          <ScalarProperty Name="Data_DO" ColumnName="Data_DO" />
+          <ScalarProperty Name="Ile_osob" ColumnName="Ile_osob" />
+          <ScalarProperty Name="Stawka" ColumnName="Stawka" />
+          <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StazPraktykaTyp">
+      <EntityTypeMapping TypeName="Z707_PZModel.StazPraktykaTyp">
+        <MappingFragment StoreEntitySet="StazPraktykaTyp">
+          <ScalarProperty Name="StazPraktykaTyp_ID" ColumnName="StazPraktykaTyp_ID" />
+          <ScalarProperty Name="StazPraktykaTyp1" ColumnName="StazPraktykaTyp" />
+          <ScalarProperty Name="StazPraktykaTyp_Info" ColumnName="StazPraktykaTyp_Info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StazStudentAnkieta">
+      <EntityTypeMapping TypeName="Z707_PZModel.StazStudentAnkieta">
+        <MappingFragment StoreEntitySet="StazStudentAnkieta">
+          <ScalarProperty Name="Staz_ID" ColumnName="Staz_ID" />
+          <ScalarProperty Name="Ankieta_ID" ColumnName="Ankieta_ID" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="Z707_PZModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Z707_PZModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Umowa">
+      <EntityTypeMapping TypeName="Z707_PZModel.Umowa">
+        <MappingFragment StoreEntitySet="Umowa">
+          <ScalarProperty Name="Umowa_ID" ColumnName="Umowa_ID" />
+          <ScalarProperty Name="UmowaNR" ColumnName="UmowaNR" />
+          <ScalarProperty Name="UmowaWzor_ID" ColumnName="UmowaWzor_ID" />
+          <ScalarProperty Name="TrescUmowy" ColumnName="TrescUmowy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UmowaWzor">
+      <EntityTypeMapping TypeName="Z707_PZModel.UmowaWzor">
+        <MappingFragment StoreEntitySet="UmowaWzor">
+          <ScalarProperty Name="UmowaWzor_ID" ColumnName="UmowaWzor_ID" />
+          <ScalarProperty Name="UmowaNazwa" ColumnName="UmowaNazwa" />
+          <ScalarProperty Name="AktywnyWzor" ColumnName="AktywnyWzor" />
+          <ScalarProperty Name="Wersja" ColumnName="Wersja" />
+          <ScalarProperty Name="TrescUmowy" ColumnName="TrescUmowy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UmowaWzorZmienne">
+      <EntityTypeMapping TypeName="Z707_PZModel.UmowaWzorZmienne">
+        <MappingFragment StoreEntitySet="UmowaWzorZmienne">
+          <ScalarProperty Name="UmowaWzorZmienne_ID" ColumnName="UmowaWzorZmienne_ID" />
+          <ScalarProperty Name="UmowaWzor_ID" ColumnName="UmowaWzor_ID" />
+          <ScalarProperty Name="ZmiennaNazwa" ColumnName="ZmiennaNazwa" />
+          <ScalarProperty Name="ZmiennaDefinicja" ColumnName="ZmiennaDefinicja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UmowaZmienne">
+      <EntityTypeMapping TypeName="Z707_PZModel.UmowaZmienne">
+        <MappingFragment StoreEntitySet="UmowaZmienne">
+          <ScalarProperty Name="UmowaZmienne_ID" ColumnName="UmowaZmienne_ID" />
+          <ScalarProperty Name="Umowa_ID" ColumnName="Umowa_ID" />
+          <ScalarProperty Name="ZmiennaNazwa" ColumnName="ZmiennaNazwa" />
+          <ScalarProperty Name="ZmiennaWartosc" ColumnName="ZmiennaWartosc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Z707_PZModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="UserTyp" ColumnName="UserTyp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ankieta">
+      <EntityTypeMapping TypeName="Z707_PZModel.Ankieta">
+        <MappingFragment StoreEntitySet="Ankieta">
+          <ScalarProperty Name="Ankieta_ID" ColumnName="Ankieta_ID" />
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="Pytanie_LP" ColumnName="Pytanie_LP" />
+          <ScalarProperty Name="Odp_LP" ColumnName="Odp_LP" />
+          <ScalarProperty Name="StanAnkiety" ColumnName="StanAnkiety" />
+          <ScalarProperty Name="Odpowiedz" ColumnName="Odpowiedz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AdresDodaj" FunctionName="Z707_PZModel.Store.AdresDodaj" />
+    <FunctionImportMapping FunctionImportName="AdresKrajDodaj" FunctionName="Z707_PZModel.Store.AdresKrajDodaj" />
+    <FunctionImportMapping FunctionImportName="AdresTypDodaj" FunctionName="Z707_PZModel.Store.AdresTypDodaj" />
+    <FunctionImportMapping FunctionImportName="AnkietaDodaj" FunctionName="Z707_PZModel.Store.AnkietaDodaj" />
+    <FunctionImportMapping FunctionImportName="AnkietaWzorDodaj" FunctionName="Z707_PZModel.Store.AnkietaWzorDodaj" />
+    <FunctionImportMapping FunctionImportName="AnkietaWzorOdpowiedzDodaj" FunctionName="Z707_PZModel.Store.AnkietaWzorOdpowiedzDodaj" />
+    <FunctionImportMapping FunctionImportName="AnkietaWzorPytanieDodaj" FunctionName="Z707_PZModel.Store.AnkietaWzorPytanieDodaj" />
+    <FunctionImportMapping FunctionImportName="KiedunekStudentDodaj" FunctionName="Z707_PZModel.Store.KiedunekStudentDodaj" />
+    <FunctionImportMapping FunctionImportName="KierunekDodaj" FunctionName="Z707_PZModel.Store.KierunekDodaj" />
+    <FunctionImportMapping FunctionImportName="PracodawcaAdresDodaj" FunctionName="Z707_PZModel.Store.PracodawcaAdresDodaj" />
+    <FunctionImportMapping FunctionImportName="PracodawcaDodaj" FunctionName="Z707_PZModel.Store.PracodawcaDodaj" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Z707_PZModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Z707_PZModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Z707_PZModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Z707_PZModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Z707_PZModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Z707_PZModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Z707_PZModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="StazDodaj" FunctionName="Z707_PZModel.Store.StazDodaj" />
+    <FunctionImportMapping FunctionImportName="StazPraktykaTypDodaj" FunctionName="Z707_PZModel.Store.StazPraktykaTypDodaj" />
+    <FunctionImportMapping FunctionImportName="StazStudentAnkietaDodaj" FunctionName="Z707_PZModel.Store.StazStudentAnkietaDodaj" />
+    <FunctionImportMapping FunctionImportName="StazStudentDodaj" FunctionName="Z707_PZModel.Store.StazStudentDodaj" />
+    <FunctionImportMapping FunctionImportName="StazStudentUmowaDodaj" FunctionName="Z707_PZModel.Store.StazStudentUmowaDodaj" />
+    <FunctionImportMapping FunctionImportName="StudentAdresDodaj" FunctionName="Z707_PZModel.Store.StudentAdresDodaj" />
+    <FunctionImportMapping FunctionImportName="StudentDodaj" FunctionName="Z707_PZModel.Store.StudentDodaj" />
+    <FunctionImportMapping FunctionImportName="UmowaDodaj" FunctionName="Z707_PZModel.Store.UmowaDodaj" />
+    <FunctionImportMapping FunctionImportName="UmowaWzorDodaj" FunctionName="Z707_PZModel.Store.UmowaWzorDodaj" />
+    <FunctionImportMapping FunctionImportName="UmowaWzorZmienneDodaj" FunctionName="Z707_PZModel.Store.UmowaWzorZmienneDodaj" />
+    <FunctionImportMapping FunctionImportName="UmowaZmienneDodaj" FunctionName="Z707_PZModel.Store.UmowaZmienneDodaj" />
+    <FunctionImportMapping FunctionImportName="UsersDodaj" FunctionName="Z707_PZModel.Store.UsersDodaj" />
+    <FunctionImportMapping FunctionImportName="pytanieByAnkieta" FunctionName="Z707_PZModel.Store.pytanieByAnkieta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.pytanieByAnkieta_Result">
+          <ScalarProperty Name="NazwaAnkiety" ColumnName="NazwaAnkiety" />
+          <ScalarProperty Name="Pytanie" ColumnName="Pytanie" />
+          <ScalarProperty Name="Odpowiedz" ColumnName="Odpowiedz" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

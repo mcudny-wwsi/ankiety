@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Z707_PZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adres">
+    <Key>
+      <PropertyRef Name="Adres_ID" />
+    </Key>
+    <Property Name="Adres_ID" Type="int" Nullable="false" />
+    <Property Name="AdresTyp_ID" Type="int" Nullable="false" />
+    <Property Name="AdresKraj_ID" Type="int" />
+    <Property Name="AdresMiasto" Type="varchar" MaxLength="50" />
+    <Property Name="AdresKod" Type="varchar" MaxLength="10" />
+    <Property Name="AdresUlicaTyp" Type="varchar" MaxLength="10" />
+    <Property Name="AdresUlica" Type="varchar" MaxLength="50" />
+    <Property Name="AdresUlicaNR" Type="varchar" MaxLength="50" />
+    <Property Name="AdresWojewodztwo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AdresKraj">
+    <Key>
+      <PropertyRef Name="AdresKraj_ID" />
+    </Key>
+    <Property Name="AdresKraj_ID" Type="int" Nullable="false" />
+    <Property Name="AdresKraj" Type="varchar" MaxLength="25" />
+    <Property Name="AdresKraj_Info" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="AdresTyp">
+    <Key>
+      <PropertyRef Name="AdresTyp_ID" />
+    </Key>
+    <Property Name="AdresTyp_ID" Type="int" Nullable="false" />
+    <Property Name="AdresTyp" Type="varchar" MaxLength="25" />
+    <Property Name="AdresTyp_Info" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Ankieta">
+    <Key>
+      <PropertyRef Name="Ankieta_ID" />
+    </Key>
+    <Property Name="Ankieta_ID" Type="int" Nullable="false" />
+    <Property Name="AnkietaWzor_ID" Type="int" />
+    <Property Name="Pytanie_LP" Type="int" />
+    <Property Name="Odp_LP" Type="int" />
+    <Property Name="StanAnkiety" Type="nchar" MaxLength="10" />
+    <Property Name="Odpowiedz" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AnkietaWzor">
+    <Key>
+      <PropertyRef Name="AnkietaWzor_ID" />
+    </Key>
+    <Property Name="AnkietaWzor_ID" Type="int" Nullable="false" />
+    <Property Name="NazwaAnkiety" Type="varchar" MaxLength="50" />
+    <Property Name="Wersja" Type="varchar" MaxLength="20" />
+    <Property Name="Aktywna" Type="bit" />
+  </EntityType>
+  <EntityType Name="AnkietaWzorOdpowiedz">
+    <Key>
+      <PropertyRef Name="AnkietaWzorOdpowiedz_ID" />
+    </Key>
+    <Property Name="AnkietaWzorOdpowiedz_ID" Type="int" Nullable="false" />
+    <Property Name="AnkietaWzorPytanie_ID" Type="int" />
+    <Property Name="Odpowiedz_LP" Type="int" />
+    <Property Name="Odpowiedz" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AnkietaWzorPytanie">
+    <Key>
+      <PropertyRef Name="AnkietaWzorPytanie_ID" />
+    </Key>
+    <Property Name="AnkietaWzorPytanie_ID" Type="int" Nullable="false" />
+    <Property Name="AnkietaWzor_ID" Type="int" />
+    <Property Name="Pytanie_LP" Type="int" />
+    <Property Name="Pytanie" Type="varchar" MaxLength="200" />
+    <Property Name="OdpowiedzTyp" Type="int" />
+  </EntityType>
+  <EntityType Name="Kierunek">
+    <Key>
+      <PropertyRef Name="Kierunek_ID" />
+    </Key>
+    <Property Name="Kierunek_ID" Type="int" Nullable="false" />
+    <Property Name="Nazwa" Type="varchar" MaxLength="150" />
+    <Property Name="UczelniaNazwa" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Pracodawca">
+    <Key>
+      <PropertyRef Name="Pracodawca_ID" />
+    </Key>
+    <Property Name="Pracodawca_ID" Type="int" Nullable="false" />
+    <Property Name="Symbol" Type="varchar" MaxLength="50" />
+    <Property Name="Nazwa" Type="varchar" MaxLength="250" />
+    <Property Name="NIP" Type="varchar" MaxLength="15" />
+    <Property Name="REGON" Type="varchar" MaxLength="15" />
+    <Property Name="Email" Type="varchar" MaxLength="75" />
+  </EntityType>
+  <EntityType Name="Staz">
+    <Key>
+      <PropertyRef Name="Staz_ID" />
+    </Key>
+    <Property Name="Staz_ID" Type="int" Nullable="false" />
+    <Property Name="Pracodawca_ID" Type="int" />
+    <Property Name="StazPraktykaTyp_ID" Type="int" />
+    <Property Name="StazNazwa" Type="nchar" MaxLength="10" />
+    <Property Name="StazProgram" Type="nchar" MaxLength="10" />
+    <Property Name="Data_OD" Type="date" />
+    <Property Name="Data_DO" Type="date" />
+    <Property Name="Ile_osob" Type="int" />
+    <Property Name="Stawka" Type="decimal" Precision="7" Scale="2" />
+    <Property Name="Status_ID" Type="bit" />
+  </EntityType>
+  <EntityType Name="StazPraktykaTyp">
+    <Key>
+      <PropertyRef Name="StazPraktykaTyp_ID" />
+    </Key>
+    <Property Name="StazPraktykaTyp_ID" Type="int" Nullable="false" />
+    <Property Name="StazPraktykaTyp" Type="varchar" MaxLength="25" />
+    <Property Name="StazPraktykaTyp_Info" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="StazStudentAnkieta">
+    <Key>
+      <PropertyRef Name="Ankieta_ID" />
+    </Key>
+    <Property Name="Staz_ID" Type="int" />
+    <Property Name="Ankieta_ID" Type="int" Nullable="false" />
+    <Property Name="Student_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Student_ID" />
+    </Key>
+    <Property Name="Student_ID" Type="int" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="50" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="50" />
+    <Property Name="PESEL" Type="bigint" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Umowa">
+    <Key>
+      <PropertyRef Name="Umowa_ID" />
+    </Key>
+    <Property Name="Umowa_ID" Type="int" Nullable="false" />
+    <Property Name="UmowaNR" Type="varchar" MaxLength="50" />
+    <Property Name="UmowaWzor_ID" Type="int" />
+    <Property Name="TrescUmowy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UmowaWzor">
+    <Key>
+      <PropertyRef Name="UmowaWzor_ID" />
+    </Key>
+    <Property Name="UmowaWzor_ID" Type="int" Nullable="false" />
+    <Property Name="UmowaNazwa" Type="varchar" MaxLength="50" />
+    <Property Name="AktywnyWzor" Type="bit" />
+    <Property Name="Wersja" Type="varchar" MaxLength="10" />
+    <Property Name="TrescUmowy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UmowaWzorZmienne">
+    <Key>
+      <PropertyRef Name="UmowaWzorZmienne_ID" />
+    </Key>
+    <Property Name="UmowaWzorZmienne_ID" Type="int" Nullable="false" />
+    <Property Name="UmowaWzor_ID" Type="int" />
+    <Property Name="ZmiennaNazwa" Type="varchar" MaxLength="50" />
+    <Property Name="ZmiennaDefinicja" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="UmowaZmienne">
+    <Key>
+      <PropertyRef Name="UmowaZmienne_ID" />
+    </Key>
+    <Property Name="UmowaZmienne_ID" Type="int" Nullable="false" />
+    <Property Name="Umowa_ID" Type="int" />
+    <Property Name="ZmiennaNazwa" Type="varchar" MaxLength="50" />
+    <Property Name="ZmiennaWartosc" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nchar" MaxLength="20" />
+    <Property Name="Password" Type="nchar" MaxLength="20" />
+    <Property Name="Imie" Type="nchar" MaxLength="25" />
+    <Property Name="Nazwisko" Type="nchar" MaxLength="50" />
+    <Property Name="UserTyp" Type="int" />
+  </EntityType>
+  <Association Name="FK_Adres_slo_AdresKraj">
+    <End Role="AdresKraj" Type="Self.AdresKraj" Multiplicity="0..1" />
+    <End Role="Adres" Type="Self.Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresKraj">
+        <PropertyRef Name="AdresKraj_ID" />
+      </Principal>
+      <Dependent Role="Adres">
+        <PropertyRef Name="AdresKraj_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Adres_slo_AdresTyp">
+    <End Role="AdresTyp" Type="Self.AdresTyp" Multiplicity="1" />
+    <End Role="Adres" Type="Self.Adres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdresTyp">
+        <PropertyRef Name="AdresTyp_ID" />
+      </Principal>
+      <Dependent Role="Adres">
+        <PropertyRef Name="AdresTyp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ankieta_AnkietaWzor">
+    <End Role="AnkietaWzor" Type="Self.AnkietaWzor" Multiplicity="0..1" />
+    <End Role="Ankieta" Type="Self.Ankieta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnkietaWzor">
+        <PropertyRef Name="AnkietaWzor_ID" />
+      </Principal>
+      <Dependent Role="Ankieta">
+        <PropertyRef Name="AnkietaWzor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ankieta_StazStudentAnkieta">
+    <End Role="StazStudentAnkieta" Type="Self.StazStudentAnkieta" Multiplicity="1" />
+    <End Role="Ankieta" Type="Self.Ankieta" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StazStudentAnkieta">
+        <PropertyRef Name="Ankieta_ID" />
+      </Principal>
+      <Dependent Role="Ankieta">
+        <PropertyRef Name="Ankieta_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnkietaWzorOdp_AnkietaWzorPyt">
+    <End Role="AnkietaWzorPytanie" Type="Self.AnkietaWzorPytanie" Multiplicity="0..1" />
+    <End Role="AnkietaWzorOdpowiedz" Type="Self.AnkietaWzorOdpowiedz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnkietaWzorPytanie">
+        <PropertyRef Name="AnkietaWzorPytanie_ID" />
+      </Principal>
+      <Dependent Role="AnkietaWzorOdpowiedz">
+        <PropertyRef Name="AnkietaWzorPytanie_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnkietaWzorPyt_AnkietaWzor">
+    <End Role="AnkietaWzor" Type="Self.AnkietaWzor" Multiplicity="0..1" />
+    <End Role="AnkietaWzorPytanie" Type="Self.AnkietaWzorPytanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnkietaWzor">
+        <PropertyRef Name="AnkietaWzor_ID" />
+      </Principal>
+      <Dependent Role="AnkietaWzorPytanie">
+        <PropertyRef Name="AnkietaWzor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staz_Pracodawca">
+    <End Role="Pracodawca" Type="Self.Pracodawca" Multiplicity="0..1" />
+    <End Role="Staz" Type="Self.Staz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pracodawca">
+        <PropertyRef Name="Pracodawca_ID" />
+      </Principal>
+      <Dependent Role="Staz">
+        <PropertyRef Name="Pracodawca_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staz_slo_StazPraktykaTyp">
+    <End Role="StazPraktykaTyp" Type="Self.StazPraktykaTyp" Multiplicity="0..1" />
+    <End Role="Staz" Type="Self.Staz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StazPraktykaTyp">
+        <PropertyRef Name="StazPraktykaTyp_ID" />
+      </Principal>
+      <Dependent Role="Staz">
+        <PropertyRef Name="StazPraktykaTyp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StazStudentAnkieta_Staz">
+    <End Role="Staz" Type="Self.Staz" Multiplicity="0..1" />
+    <End Role="StazStudentAnkieta" Type="Self.StazStudentAnkieta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staz">
+        <PropertyRef Name="Staz_ID" />
+      </Principal>
+      <Dependent Role="StazStudentAnkieta">
+        <PropertyRef Name="Staz_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StazStudentAnkieta_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StazStudentAnkieta" Type="Self.StazStudentAnkieta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Student_ID" />
+      </Principal>
+      <Dependent Role="StazStudentAnkieta">
+        <PropertyRef Name="Student_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Umowa_UmowaWzor">
+    <End Role="UmowaWzor" Type="Self.UmowaWzor" Multiplicity="0..1" />
+    <End Role="Umowa" Type="Self.Umowa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UmowaWzor">
+        <PropertyRef Name="UmowaWzor_ID" />
+      </Principal>
+      <Dependent Role="Umowa">
+        <PropertyRef Name="UmowaWzor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UmowaWzorZmienne_UmowaWzor">
+    <End Role="UmowaWzor" Type="Self.UmowaWzor" Multiplicity="0..1" />
+    <End Role="UmowaWzorZmienne" Type="Self.UmowaWzorZmienne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UmowaWzor">
+        <PropertyRef Name="UmowaWzor_ID" />
+      </Principal>
+      <Dependent Role="UmowaWzorZmienne">
+        <PropertyRef Name="UmowaWzor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UmowaZmienne_Umowa">
+    <End Role="Umowa" Type="Self.Umowa" Multiplicity="0..1" />
+    <End Role="UmowaZmienne" Type="Self.UmowaZmienne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Umowa">
+        <PropertyRef Name="Umowa_ID" />
+      </Principal>
+      <Dependent Role="UmowaZmienne">
+        <PropertyRef Name="Umowa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AdresDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AdresTyp_ID" Type="int" Mode="In" />
+    <Parameter Name="AdresKraj_ID" Type="int" Mode="In" />
+    <Parameter Name="AdresMiasto" Type="varchar" Mode="In" />
+    <Parameter Name="AdresKod" Type="varchar" Mode="In" />
+    <Parameter Name="AdresUlicaTyp" Type="varchar" Mode="In" />
+    <Parameter Name="AdresUlica" Type="varchar" Mode="In" />
+    <Parameter Name="AdresUlicaNR" Type="varchar" Mode="In" />
+    <Parameter Name="AdresWojewodztwo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AdresKrajDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AdresKraj" Type="varchar" Mode="In" />
+    <Parameter Name="AdresKraj_Info" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AdresTypDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AdresTyp" Type="varchar" Mode="In" />
+    <Parameter Name="AdresTyp_Info" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AnkietaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnkietaWzor_ID" Type="int" Mode="In" />
+    <Parameter Name="Pytanie_LP" Type="int" Mode="In" />
+    <Parameter Name="Odp_LP" Type="int" Mode="In" />
+    <Parameter Name="StanAnkiety" Type="nchar" Mode="In" />
+    <Parameter Name="Odpowiedz" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AnkietaWzorDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NazwaAnkiety" Type="varchar" Mode="In" />
+    <Parameter Name="Wersja" Type="varchar" Mode="In" />
+    <Parameter Name="Aktywna" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="AnkietaWzorOdpowiedzDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnkietaWzorPytanie_ID" Type="int" Mode="In" />
+    <Parameter Name="Odpowiedz_LP" Type="int" Mode="In" />
+    <Parameter Name="Odpowiedz" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AnkietaWzorPytanieDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AnkietaWzor_ID" Type="int" Mode="In" />
+    <Parameter Name="Pytanie_LP" Type="int" Mode="In" />
+    <Parameter Name="Pytanie" Type="varchar" Mode="In" />
+    <Parameter Name="OdpowiedzTyp" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="KiedunekStudentDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Student_ID" Type="int" Mode="In" />
+    <Parameter Name="Data_OD" Type="date" Mode="In" />
+    <Parameter Name="Data_DO" Type="date" Mode="In" />
+  </Function>
+  <Function Name="KierunekDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nazwa" Type="varchar" Mode="In" />
+    <Parameter Name="UczelniaNazwa" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PracodawcaAdresDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Adres_ID" Type="int" Mode="In" />
+    <Parameter Name="Data_OD" Type="date" Mode="In" />
+    <Parameter Name="Data_DO" Type="date" Mode="In" />
+  </Function>
+  <Function Name="PracodawcaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Symbol" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwa" Type="varchar" Mode="In" />
+    <Parameter Name="NIP" Type="varchar" Mode="In" />
+    <Parameter Name="REGON" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="pytanieByAnkieta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="NazwaAnkiety" Type="varchar" MaxLength="50" />
+          <Property Name="Pytanie" Type="varchar" MaxLength="200" />
+          <Property Name="Odpowiedz" Type="varchar" MaxLength="200" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="StazDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Pracodawca_ID" Type="int" Mode="In" />
+    <Parameter Name="StazPraktykaTyp_ID" Type="int" Mode="In" />
+    <Parameter Name="StazNazwa" Type="nchar" Mode="In" />
+    <Parameter Name="StazProgram" Type="nchar" Mode="In" />
+    <Parameter Name="Data_OD" Type="date" Mode="In" />
+    <Parameter Name="Data_DO" Type="date" Mode="In" />
+    <Parameter Name="Ile_osob" Type="int" Mode="In" />
+    <Parameter Name="Stawka" Type="decimal" Mode="In" />
+    <Parameter Name="Status_ID" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="StazPraktykaTypDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StazPraktykaTyp" Type="varchar" Mode="In" />
+    <Parameter Name="StazPraktykaTyp_Info" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="StazStudentAnkietaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Staz_ID" Type="int" Mode="In" />
+    <Parameter Name="Ankieta_ID" Type="int" Mode="In" />
+    <Parameter Name="Student_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StazStudentDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Student_ID" Type="int" Mode="In" />
+    <Parameter Name="Staz_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StazStudentUmowaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Staz_ID" Type="int" Mode="In" />
+    <Parameter Name="Umowa_ID" Type="int" Mode="In" />
+    <Parameter Name="Student_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StudentAdresDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Student_ID" Type="int" Mode="In" />
+    <Parameter Name="Adres_ID" Type="int" Mode="In" />
+    <Parameter Name="Data_OD" Type="date" Mode="In" />
+    <Parameter Name="Data_DO" Type="date" Mode="In" />
+  </Function>
+  <Function Name="StudentDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="PESEL" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="UmowaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UmowaNR" Type="varchar" Mode="In" />
+    <Parameter Name="UmowaWzor_ID" Type="int" Mode="In" />
+    <Parameter Name="TrescUmowy" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="UmowaWzorDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UmowaNazwa" Type="varchar" Mode="In" />
+    <Parameter Name="AktywnyWzor" Type="bit" Mode="In" />
+    <Parameter Name="Wersja" Type="varchar" Mode="In" />
+    <Parameter Name="TrescUmowy" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="UmowaWzorZmienneDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UmowaWzor_ID" Type="int" Mode="In" />
+    <Parameter Name="ZmiennaNazwa" Type="varchar" Mode="In" />
+    <Parameter Name="ZmiennaDefinicja" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UmowaZmienneDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Umowa_ID" Type="int" Mode="In" />
+    <Parameter Name="ZmiennaNazwa" Type="varchar" Mode="In" />
+    <Parameter Name="ZmiennaWartosc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UsersDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Login" Type="nchar" Mode="In" />
+    <Parameter Name="Password" Type="nchar" Mode="In" />
+    <Parameter Name="Imie" Type="nchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="nchar" Mode="In" />
+    <Parameter Name="UserTyp" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Z707_PZModelStoreContainer">
+    <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdresKraj" EntityType="Self.AdresKraj" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdresTyp" EntityType="Self.AdresTyp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnkietaWzor" EntityType="Self.AnkietaWzor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnkietaWzorOdpowiedz" EntityType="Self.AnkietaWzorOdpowiedz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnkietaWzorPytanie" EntityType="Self.AnkietaWzorPytanie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kierunek" EntityType="Self.Kierunek" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pracodawca" EntityType="Self.Pracodawca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staz" EntityType="Self.Staz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StazPraktykaTyp" EntityType="Self.StazPraktykaTyp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StazStudentAnkieta" EntityType="Self.StazStudentAnkieta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Umowa" EntityType="Self.Umowa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UmowaWzor" EntityType="Self.UmowaWzor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UmowaWzorZmienne" EntityType="Self.UmowaWzorZmienne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UmowaZmienne" EntityType="Self.UmowaZmienne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ankieta" EntityType="Self.Ankieta" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ankieta].[Ankieta_ID] AS [Ankieta_ID], 
+    [Ankieta].[AnkietaWzor_ID] AS [AnkietaWzor_ID], 
+    [Ankieta].[Pytanie_LP] AS [Pytanie_LP], 
+    [Ankieta].[Odp_LP] AS [Odp_LP], 
+    [Ankieta].[StanAnkiety] AS [StanAnkiety], 
+    [Ankieta].[Odpowiedz] AS [Odpowiedz]
+    FROM [dbo].[Ankieta] AS [Ankieta]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Adres_slo_AdresKraj" Association="Self.FK_Adres_slo_AdresKraj">
+      <End Role="AdresKraj" EntitySet="AdresKraj" />
+      <End Role="Adres" EntitySet="Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Adres_slo_AdresTyp" Association="Self.FK_Adres_slo_AdresTyp">
+      <End Role="AdresTyp" EntitySet="AdresTyp" />
+      <End Role="Adres" EntitySet="Adres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ankieta_AnkietaWzor" Association="Self.FK_Ankieta_AnkietaWzor">
+      <End Role="AnkietaWzor" EntitySet="AnkietaWzor" />
+      <End Role="Ankieta" EntitySet="Ankieta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ankieta_StazStudentAnkieta" Association="Self.FK_Ankieta_StazStudentAnkieta">
+      <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
+      <End Role="Ankieta" EntitySet="Ankieta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnkietaWzorOdp_AnkietaWzorPyt" Association="Self.FK_AnkietaWzorOdp_AnkietaWzorPyt">
+      <End Role="AnkietaWzorPytanie" EntitySet="AnkietaWzorPytanie" />
+      <End Role="AnkietaWzorOdpowiedz" EntitySet="AnkietaWzorOdpowiedz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnkietaWzorPyt_AnkietaWzor" Association="Self.FK_AnkietaWzorPyt_AnkietaWzor">
+      <End Role="AnkietaWzor" EntitySet="AnkietaWzor" />
+      <End Role="AnkietaWzorPytanie" EntitySet="AnkietaWzorPytanie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staz_Pracodawca" Association="Self.FK_Staz_Pracodawca">
+      <End Role="Pracodawca" EntitySet="Pracodawca" />
+      <End Role="Staz" EntitySet="Staz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staz_slo_StazPraktykaTyp" Association="Self.FK_Staz_slo_StazPraktykaTyp">
+      <End Role="StazPraktykaTyp" EntitySet="StazPraktykaTyp" />
+      <End Role="Staz" EntitySet="Staz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StazStudentAnkieta_Staz" Association="Self.FK_StazStudentAnkieta_Staz">
+      <End Role="Staz" EntitySet="Staz" />
+      <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StazStudentAnkieta_Student" Association="Self.FK_StazStudentAnkieta_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Umowa_UmowaWzor" Association="Self.FK_Umowa_UmowaWzor">
+      <End Role="UmowaWzor" EntitySet="UmowaWzor" />
+      <End Role="Umowa" EntitySet="Umowa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UmowaWzorZmienne_UmowaWzor" Association="Self.FK_UmowaWzorZmienne_UmowaWzor">
+      <End Role="UmowaWzor" EntitySet="UmowaWzor" />
+      <End Role="UmowaWzorZmienne" EntitySet="UmowaWzorZmienne" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UmowaZmienne_Umowa" Association="Self.FK_UmowaZmienne_Umowa">
+      <End Role="Umowa" EntitySet="Umowa" />
+      <End Role="UmowaZmienne" EntitySet="UmowaZmienne" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

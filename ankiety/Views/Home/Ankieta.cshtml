@@ -1,0 +1,25 @@
+﻿@model ankiety.Models.HomeModel
+
+@{
+
+    ViewBag.Title = "Ankieta";
+    Layout = "~/Views/Basic.cshtml";
+
+}
+
+<h2>Ankieta</h2>
+
+
+    Ankieta: @ViewBag.ankietaId <br />
+
+
+    Staz: @ViewBag.stazId <br />
+
+    Student: @ViewBag.studentId <br />
+
+@foreach (var item in Model.ssa) {
+    if (@item.Ankieta_ID == ViewBag.ankietaId) { 
+        @item.Pytanie<br />
+        @item.Odpowiedz<br/>
+    }
+}
