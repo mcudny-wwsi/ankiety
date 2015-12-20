@@ -263,5 +263,57 @@
     <FunctionImportMapping FunctionImportName="UmowaWzorZmienneDodaj" FunctionName="Z707_PZModel.Store.UmowaWzorZmienneDodaj" />
     <FunctionImportMapping FunctionImportName="UmowaZmienneDodaj" FunctionName="Z707_PZModel.Store.UmowaZmienneDodaj" />
     <FunctionImportMapping FunctionImportName="UsersDodaj" FunctionName="Z707_PZModel.Store.UsersDodaj" />
+    <FunctionImportMapping FunctionImportName="getAnkieta" FunctionName="Z707_PZModel.Store.getAnkieta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.getAnkieta_Result">
+          <ScalarProperty Name="Ankieta_ID" ColumnName="Ankieta_ID" />
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="Pytanie_LP" ColumnName="Pytanie_LP" />
+          <ScalarProperty Name="Odp_LP" ColumnName="Odp_LP" />
+          <ScalarProperty Name="StanAnkiety" ColumnName="StanAnkiety" />
+          <ScalarProperty Name="Odpowiedz" ColumnName="Odpowiedz" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getAnkietaWzor" FunctionName="Z707_PZModel.Store.getAnkietaWzor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.getAnkietaWzor_Result">
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="NazwaAnkiety" ColumnName="NazwaAnkiety" />
+          <ScalarProperty Name="Wersja" ColumnName="Wersja" />
+          <ScalarProperty Name="Aktywna" ColumnName="Aktywna" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getAnkietaWzorOdpowiedz" FunctionName="Z707_PZModel.Store.getAnkietaWzorOdpowiedz">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.getAnkietaWzorOdpowiedz_Result">
+          <ScalarProperty Name="AnkietaWzorOdpowiedz_ID" ColumnName="AnkietaWzorOdpowiedz_ID" />
+          <ScalarProperty Name="AnkietaWzorPytanie_ID" ColumnName="AnkietaWzorPytanie_ID" />
+          <ScalarProperty Name="Odpowiedz_LP" ColumnName="Odpowiedz_LP" />
+          <ScalarProperty Name="Odpowiedz" ColumnName="Odpowiedz" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getAnkietaWzorPytanie" FunctionName="Z707_PZModel.Store.getAnkietaWzorPytanie">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.getAnkietaWzorPytanie_Result">
+          <ScalarProperty Name="AnkietaWzorPytanie_ID" ColumnName="AnkietaWzorPytanie_ID" />
+          <ScalarProperty Name="AnkietaWzor_ID" ColumnName="AnkietaWzor_ID" />
+          <ScalarProperty Name="Pytanie_LP" ColumnName="Pytanie_LP" />
+          <ScalarProperty Name="Pytanie" ColumnName="Pytanie" />
+          <ScalarProperty Name="OdpowiedzTyp" ColumnName="OdpowiedzTyp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getStazAnkietaStudent" FunctionName="Z707_PZModel.Store.getStazAnkietaStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Z707_PZModel.getStazAnkietaStudent_Result">
+          <ScalarProperty Name="Staz_ID" ColumnName="Staz_ID" />
+          <ScalarProperty Name="Ankieta_ID" ColumnName="Ankieta_ID" />
+          <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -10,17 +10,11 @@
 namespace ankiety.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class StazStudentAnkieta
+    public partial class getStazAnkietaStudent_Result
     {
         public Nullable<int> Staz_ID { get; set; }
         public int Ankieta_ID { get; set; }
         public Nullable<int> Student_ID { get; set; }
-    
-        public virtual Staz Staz { get; set; }
-        public virtual Ankieta Ankieta { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Ankieta Ankieta1 { get; set; }
     }
 }

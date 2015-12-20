@@ -130,6 +130,7 @@
     <NavigationProperty Name="Staz" Relationship="Self.FK_StazStudentAnkieta_Staz" FromRole="StazStudentAnkieta" ToRole="Staz" />
     <NavigationProperty Name="Ankieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="StazStudentAnkieta" ToRole="Ankieta" />
     <NavigationProperty Name="Student" Relationship="Self.FK_StazStudentAnkieta_Student" FromRole="StazStudentAnkieta" ToRole="Student" />
+    <NavigationProperty Name="Ankieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="StazStudentAnkieta" ToRole="Ankieta" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -217,6 +218,7 @@
     <Property Name="Odpowiedz" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AnkietaWzor" Relationship="Self.FK_Ankieta_AnkietaWzor" FromRole="Ankieta" ToRole="AnkietaWzor" />
     <NavigationProperty Name="StazStudentAnkieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
+    <NavigationProperty Name="StazStudentAnkieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
   </EntityType>
   <Association Name="FK_Adres_slo_AdresKraj">
     <End Role="AdresKraj" Type="Self.AdresKraj" Multiplicity="0..1" />
@@ -609,6 +611,25 @@
       <Parameter Name="Nazwisko" Mode="In" Type="String" />
       <Parameter Name="UserTyp" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getAnkieta" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkieta_Result)">
+      <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAnkietaWzor" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzor_Result)">
+      <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAnkietaWzorOdpowiedz" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzorOdpowiedz_Result)">
+      <Parameter Name="AnkietaWzorPytanie_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getAnkietaWzorPytanie" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzorPytanie_Result)">
+      <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <AssociationSet Name="FK_StazStudentAnkieta_Ankieta" Association="Z707_PZModel.FK_StazStudentAnkieta_Ankieta">
+      <End Role="Ankieta" EntitySet="Ankieta" />
+      <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
+    </AssociationSet>
+    <FunctionImport Name="getStazAnkietaStudent" IsComposable="true" ReturnType="Collection(Z707_PZModel.getStazAnkietaStudent_Result)">
+      <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -620,5 +641,49 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getAnkieta_Result">
+    <Property Type="Int32" Name="Ankieta_ID" Nullable="false" />
+    <Property Type="Int32" Name="AnkietaWzor_ID" Nullable="true" />
+    <Property Type="Int32" Name="Pytanie_LP" Nullable="true" />
+    <Property Type="Int32" Name="Odp_LP" Nullable="true" />
+    <Property Type="String" Name="StanAnkiety" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Odpowiedz" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="getAnkietaWzor_Result">
+    <Property Type="Int32" Name="AnkietaWzor_ID" Nullable="false" />
+    <Property Type="String" Name="NazwaAnkiety" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Wersja" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="Aktywna" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getAnkietaWzorOdpowiedz_Result">
+    <Property Type="Int32" Name="AnkietaWzorOdpowiedz_ID" Nullable="false" />
+    <Property Type="Int32" Name="AnkietaWzorPytanie_ID" Nullable="true" />
+    <Property Type="Int32" Name="Odpowiedz_LP" Nullable="true" />
+    <Property Type="String" Name="Odpowiedz" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="getAnkietaWzorPytanie_Result">
+    <Property Type="Int32" Name="AnkietaWzorPytanie_ID" Nullable="false" />
+    <Property Type="Int32" Name="AnkietaWzor_ID" Nullable="true" />
+    <Property Type="Int32" Name="Pytanie_LP" Nullable="true" />
+    <Property Type="String" Name="Pytanie" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="OdpowiedzTyp" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK_StazStudentAnkieta_Ankieta">
+    <End Type="Z707_PZModel.Ankieta" Role="Ankieta" Multiplicity="1" />
+    <End Type="Z707_PZModel.StazStudentAnkieta" Role="StazStudentAnkieta" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Ankieta">
+        <PropertyRef Name="Ankieta_ID" />
+      </Principal>
+      <Dependent Role="StazStudentAnkieta">
+        <PropertyRef Name="Ankieta_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="getStazAnkietaStudent_Result">
+    <Property Type="Int32" Name="Staz_ID" Nullable="true" />
+    <Property Type="Int32" Name="Ankieta_ID" Nullable="false" />
+    <Property Type="Int32" Name="Student_ID" Nullable="true" />
   </ComplexType>
 </Schema>

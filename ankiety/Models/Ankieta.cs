@@ -23,5 +23,6 @@ namespace ankiety.Models
     
         public virtual AnkietaWzor AnkietaWzor { get; set; }
         public virtual StazStudentAnkieta StazStudentAnkieta { get; set; }
+        public virtual StazStudentAnkieta StazStudentAnkieta1 { get; set; }
     }
 }

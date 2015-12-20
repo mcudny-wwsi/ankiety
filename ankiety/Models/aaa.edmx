@@ -35,8 +35,6 @@
           <Property Name="AdresTyp" Type="varchar" MaxLength="25" />
           <Property Name="AdresTyp_Info" Type="varchar" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Ankieta">
           <Key>
             <PropertyRef Name="Ankieta_ID" />
@@ -118,6 +116,8 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <Property Name="StazPraktykaTyp" Type="varchar" MaxLength="25" />
           <Property Name="StazPraktykaTyp_Info" Type="varchar" MaxLength="250" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Z707_PZ.dbo.StazStudentAnkieta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="StazStudentAnkieta">
           <Key>
             <PropertyRef Name="Ankieta_ID" />
@@ -229,18 +229,6 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ankieta_StazStudentAnkieta">
-          <End Role="StazStudentAnkieta" Type="Self.StazStudentAnkieta" Multiplicity="1" />
-          <End Role="Ankieta" Type="Self.Ankieta" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="StazStudentAnkieta">
-              <PropertyRef Name="Ankieta_ID" />
-            </Principal>
-            <Dependent Role="Ankieta">
-              <PropertyRef Name="Ankieta_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AnkietaWzorOdp_AnkietaWzorPyt">
           <End Role="AnkietaWzorPytanie" Type="Self.AnkietaWzorPytanie" Multiplicity="0..1" />
           <End Role="AnkietaWzorOdpowiedz" Type="Self.AnkietaWzorOdpowiedz" Multiplicity="*" />
@@ -286,6 +274,18 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
             </Principal>
             <Dependent Role="Staz">
               <PropertyRef Name="StazPraktykaTyp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StazStudentAnkieta_Ankieta">
+          <End Role="Ankieta" Type="Self.Ankieta" Multiplicity="1" />
+          <End Role="StazStudentAnkieta" Type="Self.StazStudentAnkieta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ankieta">
+              <PropertyRef Name="Ankieta_ID" />
+            </Principal>
+            <Dependent Role="StazStudentAnkieta">
+              <PropertyRef Name="Ankieta_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,6 +446,18 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="getStazAnkietaStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ankieta_ID" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Staz_ID" Type="int" />
+                <Property Name="Ankieta_ID" Type="int" Nullable="false" />
+                <Property Name="Student_ID" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="KiedunekStudentDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Student_ID" Type="int" Mode="In" />
           <Parameter Name="Data_OD" Type="date" Mode="In" />
@@ -582,6 +594,7 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdresKraj" EntityType="Self.AdresKraj" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdresTyp" EntityType="Self.AdresTyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ankieta" EntityType="Self.Ankieta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnkietaWzor" EntityType="Self.AnkietaWzor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnkietaWzorOdpowiedz" EntityType="Self.AnkietaWzorOdpowiedz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnkietaWzorPytanie" EntityType="Self.AnkietaWzorPytanie" Schema="dbo" store:Type="Tables" />
@@ -589,7 +602,6 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <EntitySet Name="Pracodawca" EntityType="Self.Pracodawca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staz" EntityType="Self.Staz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StazPraktykaTyp" EntityType="Self.StazPraktykaTyp" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StazStudentAnkieta" EntityType="Self.StazStudentAnkieta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Umowa" EntityType="Self.Umowa" Schema="dbo" store:Type="Tables" />
@@ -597,15 +609,12 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <EntitySet Name="UmowaWzorZmienne" EntityType="Self.UmowaWzorZmienne" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UmowaZmienne" EntityType="Self.UmowaZmienne" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ankieta" EntityType="Self.Ankieta" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="StazStudentAnkieta" EntityType="Self.StazStudentAnkieta" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Ankieta].[Ankieta_ID] AS [Ankieta_ID], 
-    [Ankieta].[AnkietaWzor_ID] AS [AnkietaWzor_ID], 
-    [Ankieta].[Pytanie_LP] AS [Pytanie_LP], 
-    [Ankieta].[Odp_LP] AS [Odp_LP], 
-    [Ankieta].[StanAnkiety] AS [StanAnkiety], 
-    [Ankieta].[Odpowiedz] AS [Odpowiedz]
-    FROM [dbo].[Ankieta] AS [Ankieta]</DefiningQuery>
+    [StazStudentAnkieta].[Staz_ID] AS [Staz_ID], 
+    [StazStudentAnkieta].[Ankieta_ID] AS [Ankieta_ID], 
+    [StazStudentAnkieta].[Student_ID] AS [Student_ID]
+    FROM [dbo].[StazStudentAnkieta] AS [StazStudentAnkieta]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Adres_slo_AdresKraj" Association="Self.FK_Adres_slo_AdresKraj">
             <End Role="AdresKraj" EntitySet="AdresKraj" />
@@ -617,10 +626,6 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           </AssociationSet>
           <AssociationSet Name="FK_Ankieta_AnkietaWzor" Association="Self.FK_Ankieta_AnkietaWzor">
             <End Role="AnkietaWzor" EntitySet="AnkietaWzor" />
-            <End Role="Ankieta" EntitySet="Ankieta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ankieta_StazStudentAnkieta" Association="Self.FK_Ankieta_StazStudentAnkieta">
-            <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
             <End Role="Ankieta" EntitySet="Ankieta" />
           </AssociationSet>
           <AssociationSet Name="FK_AnkietaWzorOdp_AnkietaWzorPyt" Association="Self.FK_AnkietaWzorOdp_AnkietaWzorPyt">
@@ -638,6 +643,10 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <AssociationSet Name="FK_Staz_slo_StazPraktykaTyp" Association="Self.FK_Staz_slo_StazPraktykaTyp">
             <End Role="StazPraktykaTyp" EntitySet="StazPraktykaTyp" />
             <End Role="Staz" EntitySet="Staz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StazStudentAnkieta_Ankieta" Association="Self.FK_StazStudentAnkieta_Ankieta">
+            <End Role="Ankieta" EntitySet="Ankieta" />
+            <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
           </AssociationSet>
           <AssociationSet Name="FK_StazStudentAnkieta_Staz" Association="Self.FK_StazStudentAnkieta_Staz">
             <End Role="Staz" EntitySet="Staz" />
@@ -794,6 +803,7 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <NavigationProperty Name="Staz" Relationship="Self.FK_StazStudentAnkieta_Staz" FromRole="StazStudentAnkieta" ToRole="Staz" />
           <NavigationProperty Name="Ankieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="StazStudentAnkieta" ToRole="Ankieta" />
           <NavigationProperty Name="Student" Relationship="Self.FK_StazStudentAnkieta_Student" FromRole="StazStudentAnkieta" ToRole="Student" />
+          <NavigationProperty Name="Ankieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="StazStudentAnkieta" ToRole="Ankieta" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -881,6 +891,7 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <Property Name="Odpowiedz" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AnkietaWzor" Relationship="Self.FK_Ankieta_AnkietaWzor" FromRole="Ankieta" ToRole="AnkietaWzor" />
           <NavigationProperty Name="StazStudentAnkieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
+          <NavigationProperty Name="StazStudentAnkieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
         </EntityType>
         <Association Name="FK_Adres_slo_AdresKraj">
           <End Role="AdresKraj" Type="Self.AdresKraj" Multiplicity="0..1" />
@@ -1274,16 +1285,23 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
             <Parameter Name="UserTyp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getAnkieta" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkieta_Result)">
-            <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getAnkietaWzor" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzor_Result)">
-            <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
+          <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getAnkietaWzorOdpowiedz" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzorOdpowiedz_Result)">
-            <Parameter Name="AnkietaWzorPytanie_ID" Mode="In" Type="Int32" />
+          <Parameter Name="AnkietaWzorPytanie_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getAnkietaWzorPytanie" IsComposable="true" ReturnType="Collection(Z707_PZModel.getAnkietaWzorPytanie_Result)">
-            <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
+          <Parameter Name="AnkietaWzor_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_StazStudentAnkieta_Ankieta" Association="Z707_PZModel.FK_StazStudentAnkieta_Ankieta">
+            <End Role="Ankieta" EntitySet="Ankieta" />
+            <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
+          </AssociationSet>
+          <FunctionImport Name="getStazAnkietaStudent" IsComposable="true" ReturnType="Collection(Z707_PZModel.getStazAnkietaStudent_Result)">
+            <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1323,6 +1341,23 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
           <Property Type="Int32" Name="Pytanie_LP" Nullable="true" />
           <Property Type="String" Name="Pytanie" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="OdpowiedzTyp" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK_StazStudentAnkieta_Ankieta">
+          <End Type="Z707_PZModel.Ankieta" Role="Ankieta" Multiplicity="1" />
+          <End Type="Z707_PZModel.StazStudentAnkieta" Role="StazStudentAnkieta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ankieta">
+              <PropertyRef Name="Ankieta_ID" />
+            </Principal>
+            <Dependent Role="StazStudentAnkieta">
+              <PropertyRef Name="Ankieta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getStazAnkietaStudent_Result">
+          <Property Type="Int32" Name="Staz_ID" Nullable="true" />
+          <Property Type="Int32" Name="Ankieta_ID" Nullable="false" />
+          <Property Type="Int32" Name="Student_ID" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1632,6 +1667,15 @@ warning 6002: The table/view 'Z707_PZ.dbo.Ankieta' does not have a primary key d
                 <ScalarProperty Name="Pytanie_LP" ColumnName="Pytanie_LP" />
                 <ScalarProperty Name="Pytanie" ColumnName="Pytanie" />
                 <ScalarProperty Name="OdpowiedzTyp" ColumnName="OdpowiedzTyp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getStazAnkietaStudent" FunctionName="Z707_PZModel.Store.getStazAnkietaStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Z707_PZModel.getStazAnkietaStudent_Result">
+                <ScalarProperty Name="Staz_ID" ColumnName="Staz_ID" />
+                <ScalarProperty Name="Ankieta_ID" ColumnName="Ankieta_ID" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

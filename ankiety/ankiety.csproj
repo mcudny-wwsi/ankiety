@@ -135,6 +135,21 @@
     <Compile Include="Models\AnkietaWzorPytanie.cs">
       <DependentUpon>aaa.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getAnkietaWzorOdpowiedz_Result.cs">
+      <DependentUpon>aaa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getAnkietaWzorPytanie_Result.cs">
+      <DependentUpon>aaa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getAnkietaWzor_Result.cs">
+      <DependentUpon>aaa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getAnkieta_Result.cs">
+      <DependentUpon>aaa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getStazAnkietaStudent_Result.cs">
+      <DependentUpon>aaa.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Kierunek.cs">
       <DependentUpon>aaa.tt</DependentUpon>

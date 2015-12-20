@@ -37,6 +37,7 @@
         <AssociationConnector Association="Z707_PZModel.FK_Umowa_UmowaWzor" ManuallyRouted="false" />
         <AssociationConnector Association="Z707_PZModel.FK_UmowaZmienne_Umowa" ManuallyRouted="false" />
         <AssociationConnector Association="Z707_PZModel.FK_UmowaWzorZmienne_UmowaWzor" ManuallyRouted="false" />
+        <AssociationConnector Association="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,15 +11,28 @@
 
 
     Ankieta: @ViewBag.ankietaId <br />
-
-
     Staz: @ViewBag.stazId <br />
-
     Student: @ViewBag.studentId <br />
 
-@foreach (var item in Model.ssa) {
-    if (@item.Ankieta_ID == ViewBag.ankietaId) { 
-        @item.Pytanie<br />
-        @item.Odpowiedz<br/>
+@foreach (var ankiety in Model.ankiety) {
+    if (@ankiety.Ankieta_ID == ViewBag.ankietaId && @ankiety.Staz_ID == ViewBag.stazId && @ankiety.Student_ID == ViewBag.studentId) {
+        foreach (var ankieta in Model.ankieta) {
+            int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+            foreach (var ankieta_w in Model.ankietaWzor) {
+                <h2>@ankieta_w.NazwaAnkiety</h2>
+                if (ankieta_w.AnkietaWzor_ID == ankietaWzorID) {
+                    foreach (var pytania in Model.pytania) {
+                        if (pytania.AnkietaWzor_ID == ankietaWzorID) { 
+                            <h3>@pytania.Pytanie</h3>
+                            foreach (var odpowiedzi in Model.odpowiedzi) {
+                                if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID) { 
+                                    <h5>@odpowiedzi.Odpowiedz</h5>
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

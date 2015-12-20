@@ -650,5 +650,15 @@ namespace ankiety.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getAnkietaWzorPytanie_Result>("[Z707_PZEntities3].[getAnkietaWzorPytanie](@AnkietaWzor_ID)", ankietaWzor_IDParameter);
         }
+    
+        [DbFunction("Z707_PZEntities3", "getStazAnkietaStudent")]
+        public virtual IQueryable<getStazAnkietaStudent_Result> getStazAnkietaStudent(Nullable<int> ankieta_ID)
+        {
+            var ankieta_IDParameter = ankieta_ID.HasValue ?
+                new ObjectParameter("Ankieta_ID", ankieta_ID) :
+                new ObjectParameter("Ankieta_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<getStazAnkietaStudent_Result>("[Z707_PZEntities3].[getStazAnkietaStudent](@Ankieta_ID)", ankieta_IDParameter);
+        }
     }
 }

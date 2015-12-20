@@ -18,7 +18,13 @@ namespace ankiety.Controllers
 
             Z707_PZEntities3 data = new Z707_PZEntities3();
             
-            var dane = new HomeModel { ssa = data.pytanieByAnkieta(ankietaId).ToArray() };
+            var dane = new HomeModel { 
+                ankiety = data.getStazAnkietaStudent(ankietaId).ToArray(),
+                ankieta = data.Ankieta.ToArray(),
+                ankietaWzor = data.AnkietaWzor.ToArray(),
+                pytania = data.AnkietaWzorPytanie.ToArray(),
+                odpowiedzi = data.AnkietaWzorOdpowiedz.ToArray()
+            };
 
             return View(dane);
         }
