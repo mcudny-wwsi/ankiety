@@ -28,5 +28,21 @@ namespace ankiety.Controllers
 
             return View(dane);
         }
+
+        public bool UpdateAnkieta() {
+            int ankietaID = Convert.ToInt32(Request.Form["ankietaID"]);
+            string odpowiedzi = Convert.ToString(Request.Form["odpowiedzi"]);
+
+            var update = new HomeModel();
+
+            if (update.updateAnkieta(ankietaID, odpowiedzi))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
     }
 }

@@ -14,24 +14,82 @@
     Staz: @ViewBag.stazId <br />
     Student: @ViewBag.studentId <br />
 
-@foreach (var ankiety in Model.ankiety) {
-    if (@ankiety.Ankieta_ID == ViewBag.ankietaId && @ankiety.Staz_ID == ViewBag.stazId && @ankiety.Student_ID == ViewBag.studentId) {
-        foreach (var ankieta in Model.ankieta) {
-            int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
-            foreach (var ankieta_w in Model.ankietaWzor) {
-                <h2>@ankieta_w.NazwaAnkiety</h2>
-                if (ankieta_w.AnkietaWzor_ID == ankietaWzorID) {
-                    foreach (var pytania in Model.pytania) {
-                        if (pytania.AnkietaWzor_ID == ankietaWzorID) { 
-                            <h3>@pytania.Pytanie</h3>
-                            foreach (var odpowiedzi in Model.odpowiedzi) {
-                                if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID) { 
-                                    <h5>@odpowiedzi.Odpowiedz</h5>
+@foreach (var ankiety in Model.ankiety)
+{
+    if (@ankiety.Ankieta_ID == ViewBag.ankietaId && @ankiety.Staz_ID == ViewBag.stazId && @ankiety.Student_ID == ViewBag.studentId)
+    {
+        foreach (var ankieta in Model.ankieta)
+        {
+            if (@ankieta.Ankieta_ID == @ViewBag.ankietaId)
+            {
+                if (@Convert.ToInt32(ankieta.StanAnkiety) == 0 || ankieta.StanAnkiety == null)
+                {
+                    <form method="post" action="/Home/UpdateAnkieta">
+                        <input type="text" name="ankietaID" value="@ankieta.Ankieta_ID"/>
+                    @{int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+                            foreach (var ankieta_w in Model.ankietaWzor)
+                            {
+                                if (ankieta_w.AnkietaWzor_ID == ankietaWzorID)
+                                {
+                                    <h2>@ankieta_w.NazwaAnkiety</h2>
+                                    foreach (var pytania in Model.pytania)
+                                    {
+                                        if (pytania.AnkietaWzor_ID == ankietaWzorID)
+                                        {
+                                            <h3>@pytania.Pytanie</h3>
+                                            foreach (var odpowiedzi in Model.odpowiedzi)
+                                            {
+                                                if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID)
+                                                {
+                                                    <div>
+                                                        <input type="checkbox" name="ankieta-@odpowiedzi.AnkietaWzorPytanie_ID" id="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID" value="0" />
+                                                        <label for="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID">@odpowiedzi.Odpowiedz</label>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
+                        <br /><br />
+                        <input type="submit" class="submit" value="Wyślij"/>
+                    </form>
                 }
+                else
+                {
+                    <div>
+                        @{int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+                        foreach (var ankieta_w in Model.ankietaWzor)
+                        {
+                            if (ankieta_w.AnkietaWzor_ID == ankietaWzorID)
+                            {
+                                <h2>@ankieta_w.NazwaAnkiety</h2>
+                                foreach (var pytania in Model.pytania)
+                                {
+                                    if (pytania.AnkietaWzor_ID == ankietaWzorID)
+                                    {
+                                        <h3>@pytania.Pytanie</h3>
+                                        foreach (var odpowiedzi in Model.odpowiedzi)
+                                        {
+                                            if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID)
+                                            {
+                                                <div>
+                                                    <!--<input type="checkbox" name="ankieta-@odpowiedzi.AnkietaWzorPytanie_ID" id="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID" value="@odpowiedzi.AnkietaWzorOdpowiedz_ID" />
+                                                    <label for="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID">@odpowiedzi.Odpowiedz</label>-->
+
+                                                    @odpowiedzi.Odpowiedz
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    </div>
+                }
+
             }
         }
     }

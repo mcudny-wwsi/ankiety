@@ -39,7 +39,7 @@
     <Property Name="Pytanie_LP" Type="int" />
     <Property Name="Odp_LP" Type="int" />
     <Property Name="StanAnkiety" Type="nchar" MaxLength="10" />
-    <Property Name="Odpowiedz" Type="varchar" MaxLength="200" />
+    <Property Name="Odpowiedz" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="AnkietaWzor">
     <Key>

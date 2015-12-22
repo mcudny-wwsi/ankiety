@@ -44,7 +44,7 @@
           <Property Name="Pytanie_LP" Type="int" />
           <Property Name="Odp_LP" Type="int" />
           <Property Name="StanAnkiety" Type="nchar" MaxLength="10" />
-          <Property Name="Odpowiedz" Type="varchar" MaxLength="200" />
+          <Property Name="Odpowiedz" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="AnkietaWzor">
           <Key>
@@ -888,7 +888,7 @@ warning 6002: The table/view 'Z707_PZ.dbo.StazStudentAnkieta' does not have a pr
           <Property Name="Pytanie_LP" Type="Int32" />
           <Property Name="Odp_LP" Type="Int32" />
           <Property Name="StanAnkiety" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Odpowiedz" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Odpowiedz" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AnkietaWzor" Relationship="Self.FK_Ankieta_AnkietaWzor" FromRole="Ankieta" ToRole="AnkietaWzor" />
           <NavigationProperty Name="StazStudentAnkieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
           <NavigationProperty Name="StazStudentAnkieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
@@ -1301,7 +1301,7 @@ warning 6002: The table/view 'Z707_PZ.dbo.StazStudentAnkieta' does not have a pr
             <End Role="StazStudentAnkieta" EntitySet="StazStudentAnkieta" />
           </AssociationSet>
           <FunctionImport Name="getStazAnkietaStudent" IsComposable="true" ReturnType="Collection(Z707_PZModel.getStazAnkietaStudent_Result)">
-            <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
+          <Parameter Name="Ankieta_ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">

@@ -215,7 +215,7 @@
     <Property Name="Pytanie_LP" Type="Int32" />
     <Property Name="Odp_LP" Type="Int32" />
     <Property Name="StanAnkiety" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Odpowiedz" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Odpowiedz" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AnkietaWzor" Relationship="Self.FK_Ankieta_AnkietaWzor" FromRole="Ankieta" ToRole="AnkietaWzor" />
     <NavigationProperty Name="StazStudentAnkieta" Relationship="Self.FK_Ankieta_StazStudentAnkieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
     <NavigationProperty Name="StazStudentAnkieta1" Relationship="Z707_PZModel.FK_StazStudentAnkieta_Ankieta" FromRole="Ankieta" ToRole="StazStudentAnkieta" />
