@@ -8,7 +8,7 @@ function initForm() {
         var action = $(this).attr("action");
         var method = $(this).attr("method");
 
-        $("input[type='checkbox']").on("change", function (e) {
+        $(".odp input").on("change", function (e) {
             if ($(this).attr("value") == 0) {
                 $(this).attr("value",1);
             } else {
@@ -20,10 +20,13 @@ function initForm() {
             var values = [];
             var json = '';
 
-            var len = $("input[type='checkbox']").length;
-            $("input[type='checkbox']").each(function (e) {
-                var id = parseInt($(this).attr("id").replace("odpowiedz-",""));
-                var val = $(this).attr("value");
+            var len = $(".odp").length;
+            $(".odp").each(function (e) {
+                var me = $(this).find("input");
+                var id = parseInt(me.attr("id").replace("odpowiedz-", ""));
+                var val = me.attr("value");
+
+                console.log(me);
 
                 if (e === (len - 1)) {
                     json = json + val + '';
@@ -39,7 +42,9 @@ function initForm() {
                     data: { ankietaID: $("input[name='ankietaID']").val(), odpowiedzi: json }
                 })
               .done(function (data) {
+                  console.log("reload");
                   console.log(data);
+                  //location.reload();
               });
 
             return false;

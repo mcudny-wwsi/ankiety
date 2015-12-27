@@ -18,6 +18,8 @@ namespace ankiety.Models
         public AnkietaWzorOdpowiedz[] odpowiedzi { get; set; }
         public getStazAnkietaStudent_Result[] ankiety { get; set; }
         public StazStudentAnkieta[] ssa { get; set; }
+        public Staz staz { get; set; }
+        public Student student { get; set; }
         public int[] json { get; set; }
 
         public bool updateAnkieta(int id, string json) {

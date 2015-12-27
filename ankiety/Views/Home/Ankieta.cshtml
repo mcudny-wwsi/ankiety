@@ -7,26 +7,32 @@
 
 }
 
-<h2>Ankieta</h2>
+<div class="ankietaWrap">
 
+    <div class="stazInfo">
+        <p>Nazwa stażu: <b>@Model.staz.StazNazwa</b></p>
+        <p>Początek stażu: <b>@Model.staz.Data_OD</b></b>
+        <p>Koniec stażu: <b>@Model.staz.Data_DO</b></b>
+        <p>Pracodawca: <b>@Model.staz.Pracodawca.Nazwa</b></p>
+    </div><div class="studentInfo"> 
+        <p>Imię i nazwisko: <b>@Model.student.Imie @Model.student.Nazwisko</b></p>
+        <p>Pesel: <b>@Model.student.PESEL</b></p>
+    </div>
 
-    Ankieta: @ViewBag.ankietaId <br />
-    Staz: @ViewBag.stazId <br />
-    Student: @ViewBag.studentId <br />
-
-@foreach (var ankiety in Model.ankiety)
-{
-    if (@ankiety.Ankieta_ID == ViewBag.ankietaId && @ankiety.Staz_ID == ViewBag.stazId && @ankiety.Student_ID == ViewBag.studentId)
+    <div class="ankietaMain">
+    @foreach (var ankiety in Model.ankiety)
     {
-        foreach (var ankieta in Model.ankieta)
+        if (@ankiety.Ankieta_ID == ViewBag.ankietaId && @ankiety.Staz_ID == ViewBag.stazId && @ankiety.Student_ID == ViewBag.studentId)
         {
-            if (@ankieta.Ankieta_ID == @ViewBag.ankietaId)
+            foreach (var ankieta in Model.ankieta)
             {
-                if (@Convert.ToInt32(ankieta.StanAnkiety) == 0 || ankieta.StanAnkiety == null)
+                if (@ankieta.Ankieta_ID == @ViewBag.ankietaId)
                 {
-                    <form method="post" action="/Home/UpdateAnkieta">
-                        <input type="text" name="ankietaID" value="@ankieta.Ankieta_ID"/>
-                    @{int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+                    if (@Convert.ToInt32(ankieta.StanAnkiety) == 0 || ankieta.StanAnkiety == null)
+                    {
+                        <form method="post" action="/Home/UpdateAnkieta">
+                            <input type="hidden" name="ankietaID" value="@ankieta.Ankieta_ID" />
+                            @{int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
                             foreach (var ankieta_w in Model.ankietaWzor)
                             {
                                 if (ankieta_w.AnkietaWzor_ID == ankietaWzorID)
@@ -41,8 +47,15 @@
                                             {
                                                 if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID)
                                                 {
-                                                    <div>
-                                                        <input type="checkbox" name="ankieta-@odpowiedzi.AnkietaWzorPytanie_ID" id="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID" value="0" />
+                                                    string odpType = "";
+                                                                
+                                                    if (@pytania.OdpowiedzTyp == 0) { 
+                                                        odpType = "radio";
+                                                    }else{
+                                                        odpType = "checkbox";
+                                                    }
+                                                    <div class="odp">
+                                                        <input type="@odpType" name="ankieta-@odpowiedzi.AnkietaWzorPytanie_ID" id="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID" value="0" />
                                                         <label for="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID">@odpowiedzi.Odpowiedz</label>
                                                     </div>
                                                 }
@@ -51,17 +64,17 @@
                                     }
                                 }
                             }
-                        }
-                        <br /><br />
-                        <input type="submit" class="submit" value="Wyślij"/>
-                    </form>
-                }
-                else
-                {
-                    <div>
-                        @{
-                            int a = 0;
-                            int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+                            }
+                            <br /><br />
+                            <input type="submit" class="submit" value="Wyślij" />
+                        </form>
+                    }
+                    else
+                    {
+                        <div>
+                            @{
+                        int a = 0;
+                        int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
                         foreach (var ankieta_w in Model.ankietaWzor)
                         {
                             if (ankieta_w.AnkietaWzor_ID == ankietaWzorID)
@@ -76,34 +89,39 @@
                                         {
                                             if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID)
                                             {
-                                                <div>
-                                                    
+                                                <p class="answers">
+
                                                     @{int b = 0;}
                                                     @foreach (var item in @Model.json)
                                                     {
-                                                        if (@a == @b) {
-                                                            if (@item == 0) { 
+                                                        if (@a == @b)
+                                                        {
+                                                            if (@item == 0)
+                                                            {
                                                                 @odpowiedzi.Odpowiedz
                                                             }
-                                                            else { 
+                                                            else
+                                                            {
                                                                 <b>@odpowiedzi.Odpowiedz</b>
                                                             }
                                                         }
                                                         { b++; }
                                                     }
                                                     @{a++;}
-                                                </div>
+                                                </p>
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                        }
-                    </div>
-                }
+                            }
+                        </div>
+                    }
 
+                }
             }
         }
     }
-}
+        </div>
+</div>

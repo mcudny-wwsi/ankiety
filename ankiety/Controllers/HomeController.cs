@@ -37,7 +37,10 @@ namespace ankiety.Controllers
                     ankieta = data.Ankieta.ToArray(),
                     ankietaWzor = data.AnkietaWzor.ToArray(),
                     pytania = data.AnkietaWzorPytanie.ToArray(),
-                    odpowiedzi = data.AnkietaWzorOdpowiedz.ToArray()
+                    odpowiedzi = data.AnkietaWzorOdpowiedz.ToArray(),
+                    staz = data.Staz.Find(stazId),
+                    student = data.Student.Find(studentId)
+
                 };
 
                 dane.json = dane.getAnkietaJson(ankietaId).ToArray();
