@@ -16,7 +16,7 @@ namespace ankiety
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{ankietaId}/{stazId}/{studentId}",
-                defaults: new { controller = "Home", action = "Ankieta", ankietaId = UrlParameter.Optional, stazId = UrlParameter.Optional, studentId = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", ankietaId = UrlParameter.Optional, stazId = UrlParameter.Optional, studentId = UrlParameter.Optional }
             );
         }
     }

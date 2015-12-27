@@ -112,7 +112,9 @@
       <DependentUpon>style.scss</DependentUpon>
     </Content>
     <Content Include="js\scripts.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -243,6 +245,8 @@
       <LastGenOutput>aaa.cs</LastGenOutput>
     </Content>
     <Content Include="css\style.scss" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,14 @@
+﻿@model ankiety.Models.HomeModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Basic.cshtml";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model.ssa) { 
+    <a href="/Home/Ankieta/@item.Ankieta_ID/@item.Staz_ID/@item.Student_ID">
+     Ankieta: @item.Ankieta_ID, Staż: @item.Staz_ID, Student: @item.Student_ID
+    </a><br/>
+}

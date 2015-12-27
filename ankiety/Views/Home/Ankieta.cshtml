@@ -59,7 +59,9 @@
                 else
                 {
                     <div>
-                        @{int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
+                        @{
+                            int a = 0;
+                            int ankietaWzorID = Convert.ToInt32(@ankieta.AnkietaWzor_ID);
                         foreach (var ankieta_w in Model.ankietaWzor)
                         {
                             if (ankieta_w.AnkietaWzor_ID == ankietaWzorID)
@@ -75,10 +77,21 @@
                                             if (@pytania.AnkietaWzorPytanie_ID == @odpowiedzi.AnkietaWzorPytanie_ID)
                                             {
                                                 <div>
-                                                    <!--<input type="checkbox" name="ankieta-@odpowiedzi.AnkietaWzorPytanie_ID" id="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID" value="@odpowiedzi.AnkietaWzorOdpowiedz_ID" />
-                                                    <label for="odpowiedz-@odpowiedzi.AnkietaWzorOdpowiedz_ID">@odpowiedzi.Odpowiedz</label>-->
-
-                                                    @odpowiedzi.Odpowiedz
+                                                    
+                                                    @{int b = 0;}
+                                                    @foreach (var item in @Model.json)
+                                                    {
+                                                        if (@a == @b) {
+                                                            if (@item == 0) { 
+                                                                @odpowiedzi.Odpowiedz
+                                                            }
+                                                            else { 
+                                                                <b>@odpowiedzi.Odpowiedz</b>
+                                                            }
+                                                        }
+                                                        { b++; }
+                                                    }
+                                                    @{a++;}
                                                 </div>
                                             }
                                         }

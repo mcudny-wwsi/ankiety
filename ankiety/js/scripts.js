@@ -18,7 +18,7 @@ function initForm() {
 
         submit.click(function (e) {
             var values = [];
-            var json = "{";
+            var json = '';
 
             var len = $("input[type='checkbox']").length;
             $("input[type='checkbox']").each(function (e) {
@@ -26,13 +26,12 @@ function initForm() {
                 var val = $(this).attr("value");
 
                 if (e === (len - 1)) {
-                    json = json + '"' + id + '":"' + val + '"';
+                    json = json + val + '';
                 } else {
-                    json = json + '"' + id + '":"' + val + '",';
+                    json = json + val + ',';
                 }
             })
 
-            json = json + "}";
 
                 $.ajax({
                     url: action,
